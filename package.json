@@ -1,0 +1,19 @@
+{
+  "name": "twitterapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --inspect app.js"
+  },
+  "author": "Arum Galadima",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "reload": "^2.2.2",
+    "twit": "^2.2.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
