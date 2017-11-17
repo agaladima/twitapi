@@ -7,6 +7,10 @@ app.set('view engine', 'pug');
 //require config file
 const T = require('./config.js');
 
+app.get('/', (req, res) => {
+	res.render('index');
+});
+
 //get five most recent friends
 T.get('friends/list', { screen_name: 'GSMbyAIR' },  function (err, data, response) {
 	let recFriends = [];
