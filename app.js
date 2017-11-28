@@ -16,22 +16,17 @@ app.set('view engine', 'pug');
 // to use css
 app.use('/static', express.static('css'));
 
-//post tweet and refresh page
-app.post('/', (req, res)=>{
-	T.post("statuses/update", { status: req.body.tweetSent }).then(()=>{
-		res.redirect('/');
-	});
-});
-
 let myTwitter = [];
 let numFollowers = [];
 let profileImage = [];
+let profileBanner = [];
 //get credentials
 T.get('account/verify_credentials', {skip_status: false}, function (err, data, response) {
 	//console.log(data);
 	myTwitter = data['screen_name'];
 	numFollowers = data['followers_count'];
 	profileImage = data['profile_image_url'];
+	profileBanner = data['profile_banner_url'];
 });
 
 //get five most recent friends
@@ -62,10 +57,19 @@ app.get('/', (req, res) => {
 		myTwit: myTwitter,
 		myFollowers: numFollowers,
 		profileImg: profileImage,
+		profileBnr: profileBanner,
 		'elFriends': friends,
 		'Tweets': timeline,
 		'elDMs': directmssg
 	});
+});
+
+//post tweet and refresh page
+app.post('/', (req, res)=>{
+	T.post("statuses/update", { status: req.body.tweetSent }).then(()=>{
+		res.redirect('/');
+	});
+	
 });
 
 //error pages
