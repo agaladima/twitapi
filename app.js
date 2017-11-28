@@ -16,9 +16,9 @@ app.set('view engine', 'pug');
 // to use css
 app.use('/static', express.static('css'));
 
+//post tweet and refresh page
 app.post('/', (req, res)=>{
-	let tweetText = req.body.tweetSent;
-	T.post("statuses/update", { status: tweetText }).then(()=>{
+	T.post("statuses/update", { status: req.body.tweetSent }).then(()=>{
 		res.redirect('/');
 	});
 });
